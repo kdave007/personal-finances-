@@ -1,0 +1,89 @@
+<div class="table-container">
+  <table mat-table [dataSource]="dataSource" matSort class="full-width-table">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <input type="checkbox" (change)="masterToggle()"
+               [checked]="selection.hasValue() && isAllSelected()"
+               [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <input type="checkbox" (click)="$event.stopPropagation()"
+               (change)="selection.toggle(row)"
+               [checked]="selection.isSelected(row)">
+      </td>
+    </ng-container>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="!element.isEditing">{{ element.date }}</span>
+        <input class="stylish-date-picker" *ngIf="element.isEditing" type="date" [(ngModel)]="element.date"  class="stylish-input">
+      </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="!element.isEditing">{{ element.amount }}</span>
+        <input *ngIf="element.isEditing" type="number" [(ngModel)]="element.amount" class="stylish-input" step="0.01">
+      </td>
+    </ng-container>
+
+    <!-- Form Column -->
+    <ng-container matColumnDef="form">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Form</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="!element.isEditing">{{ element.form }}</span>
+        <select *ngIf="element.isEditing" [(ngModel)]="element.form" class="stylish-select">
+          <option value="credit">Credit</option>
+          <option value="cash">Cash</option>
+        </select>
+      </td>
+    </ng-container>
+
+    <!-- Concept Column -->
+    <ng-container matColumnDef="concept">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Concept</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="!element.isEditing">{{ element.concept }}</span>
+        <input  class="stylish-input" *ngIf="element.isEditing" type="text" [(ngModel)]="element.concept" >
+      </td>
+    </ng-container>
+
+    <!-- Tip Amount Column -->
+    <ng-container matColumnDef="tipAmount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tip Amount</th>
+      <td mat-cell *matCellDef="let element">
+        <span *ngIf="!element.isEditing">{{ element.tipAmount }}</span>
+        <input *ngIf="element.isEditing" type="number" [(ngModel)]="element.tipAmount"  class="stylish-input" step="0.01">
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+  
+        <mat-icon role="button" (click)="editRow(element)" *ngIf="!element.isEditing">edit</mat-icon>
+        <mat-icon role="button" (click)="saveRow(element)" *ngIf="element.isEditing">save</mat-icon>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>

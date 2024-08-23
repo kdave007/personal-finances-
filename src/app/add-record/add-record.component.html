@@ -1,0 +1,91 @@
+<div class="p-d-flex p-jc-between p-ai-center p-mb-4">
+ 
+        <div class="container mt-5">
+            <h2 class="mb-4">Add New Record</h2>
+            <form (ngSubmit)="onSubmit()" #recordForm="ngForm">
+              <div class="form-group mb-3">
+                <label for="date">Date</label>
+                <input
+                  type="date"
+                  id="date"
+                  class="form-control"
+                  required
+                  [(ngModel)]="record.date"
+                  name="date"
+                />
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="type">Type</label>
+                <select
+                  id="type"
+                  class="form-control"
+                  required
+                  [(ngModel)]="record.type"
+                  name="type"
+                >
+                  <option value="income">Income</option>
+                  <option value="outcome">Outcome</option>
+                </select>
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="onHold">On Hold</label>
+                <select
+                  id="onHold"
+                  class="form-control"
+                  required
+                  [(ngModel)]="record.onHold"
+                  name="onHold"
+                >
+                  <option [value]="true">True</option>
+                  <option [value]="false">False</option>
+                </select>
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="description">Description</label>
+                <input
+                  type="text"
+                  id="description"
+                  class="form-control"
+                  required
+                  [(ngModel)]="record.description"
+                  name="description"
+                />
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="amount">Amount ($)</label>
+                <input
+                  type="number"
+                  id="amount"
+                  class="form-control"
+                  required
+                  [(ngModel)]="record.amount"
+                  name="amount"
+                  min="0"
+                  step="0.01"
+                />
+              </div>
+              
+              <div class="form-group mb-3">
+                <label for="form">Form</label>
+                <select
+                  id="form"
+                  class="form-control"
+                  required
+                  [(ngModel)]="record.form"
+                  name="form"
+                >
+                  <option value="credit">Credit</option>
+                  <option value="cash">Cash</option>
+                </select>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Add Record</button>
+            </form>
+          </div>
+        
+</div>
+
