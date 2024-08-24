@@ -5,6 +5,20 @@
   margin: 0;
 }
 
+.table-container {
+    width: fit-content;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    min-width: 100%;
+}
+
+
+.mat-mdc-paginator {  
+  align-self: center; /* Center paginator within the container */
+  min-width: 100%;
+}
+
 /* Adjust padding and reduce the size of the mat-form-field */
 .mat-form-field-appearance-fill .mat-form-field-flex {
   padding: 0 4px;  /* Smaller padding inside the fields */
