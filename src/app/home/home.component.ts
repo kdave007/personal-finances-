@@ -14,6 +14,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 
 export class HomeComponent implements OnInit, AfterViewInit {
+
   maxLengthInputValues = {
     concept : 25,
     description : 25,
@@ -101,6 +102,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     row.isEditing = false;
     row.amount = this.combineParts(row.amountIntegerPart, row.amountDecimalPart);
     row.tipAmount = this.combineParts(row.tipIntegerPart, row.tipDecimalPart);
+  }
+
+  cancelEdit(element: any) {
+     // element.amount = element.originalAmount;  // Revert to the original value
+      element.isEditing = false;  // Exit editing mode
   }
 
   
