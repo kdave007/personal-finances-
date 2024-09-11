@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild,AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild,AfterViewInit, ChangeDetectorRef, } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,13 +14,19 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 
 export class HomeComponent implements OnInit, AfterViewInit {
+  maxLengthInputValues = {
+    concept : 25,
+    description : 25,
+    amount : 10,
+    tip : 10
+  }
 
   displayedColumns: string[] = ['select', 'id', 'date', 'amount', 'form', 'concept', 'tipAmount','description', 'actions'];
  
   selection = new SelectionModel<TransactionElement>(true, []);
 
   ELEMENT_DATA: TransactionElement[] = [
-    { id: 1, date: '2024-08-01', amount: 19.99, form: 'credit', concept: 'Dinner', tipAmount: 3.00 , description:' some description about it'},
+    { id: 1, date: '2024-08-01', amount: 19.99, form: 'credit', concept: 'Dinner', tipAmount: 3.00 , description:' someddddddddddd descsssssssssssssssssription aboussssssssssssssssssssssst aaaaaaaait'},
     { id: 2, date: '2024-08-02', amount: 45.25, form: 'cash', concept: 'Groceries', tipAmount: 0.00,  description:' some description about it'},
     { id: 3, date: '2024-08-03', amount: 12.90, form: 'credit', concept: 'Cafe', tipAmount: 2.00,  description:' some description about it'},
     { id: 4, date: '2024-08-04', amount: 30.00, form: 'cash', concept: 'Bar', tipAmount: 5.50,  description:' some description about it' },
@@ -49,6 +55,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   
   dataSource = new MatTableDataSource<TransactionElement>(this.ELEMENT_DATA);
 
+  constructor(private cdRef: ChangeDetectorRef) {}
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
@@ -76,12 +84,57 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   editRow(row: TransactionElement) {
     row.isEditing = true;
+    console.log(row);
+
+    const [aIntegerPart, aDecimalPart] = this.splitAmount(row.amount);
+    const [tIntegerPart, tDecimalPart] = this.splitAmount(row.tipAmount);
+
+    // Dynamically add integer and decimal parts for editing
+    row.amountIntegerPart = aIntegerPart;
+    row.amountDecimalPart = aDecimalPart;
+
+    row.tipIntegerPart = tIntegerPart;
+    row.tipDecimalPart = tDecimalPart;
   }
 
   saveRow(row: TransactionElement) {
     row.isEditing = false;
-    // Implement save logic here
+    row.amount = this.combineParts(row.amountIntegerPart, row.amountDecimalPart);
+    row.tipAmount = this.combineParts(row.tipIntegerPart, row.tipDecimalPart);
   }
+
+  
+  splitAmount(amount: number): [number, number] {
+    // Force 2 decimal places even if the amount doesn't have decimals
+    const amountParts = amount.toFixed(2).split('.');
+    return [parseInt(amountParts[0], 10), parseInt(amountParts[1], 10)];
+  }
+
+   combineParts(integerPart: any, decimalPart: any): number {
+    if(integerPart==undefined && decimalPart==undefined){
+      return parseFloat(`${0}.${0}`);
+    } 
+    const decimalValue = decimalPart ? decimalPart.toString().padStart(2, '0') : '00';
+    return parseFloat(`${integerPart}.${decimalValue}`);
+  }
+
+  limitNumberLength(event: any, maxLength: number) {
+    let value = event.target.value;
+
+    // Remove any non-digit and non-negative characters
+    value = value.replace(/[^0-9]/g, '');
+
+    // Limit the number of digits
+    if (value.length > maxLength) {
+      value = value.slice(0, maxLength);  // Slice to maxLength
+    }
+
+    // Update the input field with the truncated value
+    event.target.value = value;
+  }
+
+   
+  
 
 }
 
@@ -95,4 +148,8 @@ export interface TransactionElement {
   tipAmount: number;
   description : string;
   isEditing?: boolean;
+  amountIntegerPart?: number;
+  amountDecimalPart?: number;
+  tipIntegerPart?: number;
+  tipDecimalPart?: number;
 }

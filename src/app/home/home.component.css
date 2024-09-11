@@ -132,3 +132,34 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+.mat-mdc-cell {
+  border-bottom-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12));
+  border-bottom-width: var(--mat-table-row-item-outline-width, 1px);
+  border-bottom-style: solid;
+  letter-spacing: var(--mat-table-row-item-label-text-tracking);
+  line-height: inherit;
+ 
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  max-width: 150px;
+  overflow: hidden; /* Hide overflowed content */
+  white-space: nowrap; /* Prevent wrapping of text */
+  text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+}
+
+.decimal-input{
+  width: 30%;
+}
+
+.integer-input{
+  width: 60%;
+}
+
+
+.decimal-point{
+  font-size: large;
+  font-weight: 900;
+  margin: 0% 2% 0% 2%;
+}
+
