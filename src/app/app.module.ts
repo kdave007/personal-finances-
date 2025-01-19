@@ -25,15 +25,27 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTabsModule } from '@angular/material/tabs';
+import { IncomeTableComponent } from './income-outcome/income-table/income-table.component';
+import { OutcomeTableComponent } from './income-outcome/outcome-table/outcome-table.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { IncomeDialogComponent } from './income-outcome/income-table/income-dialog/income-dialog.component';
+import { OutcomeDialogComponent } from './income-outcome/outcome-table/outcome-dialog/outcome-dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AddRecordComponent,
-    PlaygroundComponent
+    PlaygroundComponent,
+    IncomeTableComponent,
+    OutcomeTableComponent,
+    IncomeDialogComponent,
+    OutcomeDialogComponent
   ],
   imports: [
+    MatRadioModule,
+    MatDialogModule,
     MatTabsModule,
     MatDatepickerModule,
     MatNativeDateModule,

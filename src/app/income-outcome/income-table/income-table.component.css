@@ -186,6 +186,7 @@
   .filter-input-container {
     display: flex;
     align-items: center;
+    
   }
   
   .filter-input {
@@ -205,3 +206,8 @@
     display: flex;
     gap: 10px;
   }
+
+  .filter-column-container {
+    font-weight: 500;
+  }
+  

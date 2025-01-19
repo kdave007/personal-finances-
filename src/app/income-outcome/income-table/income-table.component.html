@@ -1,3 +1,26 @@
+<div class="settings-container">
+  <!-- Filter Column Selection -->
+  <div class="filter-column-container">
+    <label>Filter by:</label>
+    <mat-radio-group [(ngModel)]="filterColumn">
+      <mat-radio-button value="id">ID</mat-radio-button>
+      <mat-radio-button value="date">Date</mat-radio-button>
+      <mat-radio-button value="concept">Concept</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <!-- Filter Input -->
+  <div class="filter-input-container">
+    <input
+      type="text"
+      placeholder="Filter items"
+      [(ngModel)]="filterValue"
+      (input)="applyFilter()"
+      class="filter-input"
+    />
+    <mat-icon>search</mat-icon>
+  </div>
+</div>
 <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort class="full-width-table">
 
@@ -25,31 +48,7 @@
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
         <td mat-cell *matCellDef="let element">
-          <span *ngIf="!element.isEditing">{{ element.date }}</span>
-          <input class="stylish-date-picker" *ngIf="element.isEditing" type="date" [(ngModel)]="element.date"  class="stylish-input">
-        </td>
-      </ng-container>
-
-      <!-- Amount Column -->
-      <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
-        <td mat-cell *matCellDef="let element">
-          <span *ngIf="!element.isEditing">{{ element.amount }}</span>
-          <input *ngIf="element.isEditing"  (input)="limitNumberLength($event, 9)"   maxlength="9" type="number" [(ngModel)]="element.amountIntegerPart" class="stylish-input integer-input" step="01" >
-          <span *ngIf="element.isEditing" class="decimal-point" >.</span>
-          <input *ngIf="element.isEditing" (input)="limitNumberLength($event, 2)"  maxlength="2" type="number" [(ngModel)]="element.amountDecimalPart" class="stylish-input decimal-input" step="01" >
-        </td>
-      </ng-container>
-
-      <!-- Form Column -->
-      <ng-container matColumnDef="form">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Form</th>
-        <td mat-cell *matCellDef="let element">
-          <span *ngIf="!element.isEditing">{{ element.form }}</span>
-          <select *ngIf="element.isEditing" [(ngModel)]="element.form" class="stylish-select">
-            <option value="credit">Credit</option>
-            <option value="cash">Cash</option>
-          </select>
+          <span >{{ element.date }}</span>
         </td>
       </ng-container>
 
@@ -57,27 +56,46 @@
       <ng-container matColumnDef="concept">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Concept</th>
         <td mat-cell *matCellDef="let element">
-          <span *ngIf="!element.isEditing">{{ element.concept }}</span>
-          <input  class="stylish-input" *ngIf="element.isEditing" type="text" [(ngModel)]="element.concept" [attr.maxlength]="maxLengthInputValues.concept">
+          <span >{{ element.concept }}</span>
+        </td>
+      </ng-container>
+
+      <!-- Form Column -->
+      <ng-container matColumnDef="amountForm">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount Form</th>
+        <td mat-cell *matCellDef="let element">
+          <span >{{ element.amountForm }}</span>
+        </td>
+      </ng-container>
+
+      <!-- Amount Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+        <td mat-cell *matCellDef="let element">
+          <span >{{ element.amount }}</span>
+        </td>
+      </ng-container>
+
+      <!-- Form Column -->
+      <ng-container matColumnDef="tipForm">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tip Form</th>
+        <td mat-cell *matCellDef="let element">
+          <span >{{ element.tipForm }}</span>
         </td>
       </ng-container>
 
       <!-- Tip Amount Column -->
       <ng-container matColumnDef="tipAmount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tip Amount</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tip</th>
         <td mat-cell *matCellDef="let element">
-          <span *ngIf="!element.isEditing">{{ element.tipAmount }}</span>
-          <input *ngIf="element.isEditing"  (input)="limitNumberLength($event, 9)"  maxlength="9"  type="number" [(ngModel)]="element.tipIntegerPart" class="stylish-input integer-input" step="01" >
-          <span *ngIf="element.isEditing" class="decimal-point" >.</span>
-          <input *ngIf="element.isEditing"  (input)="limitNumberLength($event, 2)"  maxlength="2"  type="number" [(ngModel)]="element.tipDecimalPart" class="stylish-input decimal-input" step="01" >
-        </td>
+          <span >{{ element.tipAmount }}</span>
+       </td>
       </ng-container>
 
       <ng-container matColumnDef="description">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
         <td mat-cell *matCellDef="let element">
-          <span *ngIf="!element.isEditing">{{ element.description }}</span>
-          <input  class="stylish-input" *ngIf="element.isEditing" type="text" [(ngModel)]="element.description" [attr.maxlength]="maxLengthInputValues.description">
+          <span >{{ element.description }}</span>
         </td>
       </ng-container>
 
@@ -88,9 +106,7 @@
     
           
           <div class="post-edit">
-            <mat-icon role="button" (click)="editRow(element)" *ngIf="!element.isEditing" class="action-icon">edit</mat-icon>
-            <mat-icon role="button" (click)="cancelEdit(element)" *ngIf="element.isEditing" class="action-icon">cancel</mat-icon>
-            <mat-icon role="button" (click)="saveRow(element)" *ngIf="element.isEditing" class="action-icon">check_circle</mat-icon>
+            <mat-icon role="button" (click)="openIncomeDialog(element)" *ngIf="!element.isEditing" class="action-icon">edit</mat-icon>
           </div>
           
           
