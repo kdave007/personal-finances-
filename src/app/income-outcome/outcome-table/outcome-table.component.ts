@@ -36,11 +36,11 @@ export class OutcomeTableComponent implements OnInit, AfterViewInit {
   }
 
   ELEMENT_DATA: OutcomeElement[] = [
-    { input_id: 1, date: '2024-08-01', amount: 18.99, form: 'credit', concept: 'Rent', description: 'Monthly rent payment' },
-    { input_id: 2, date: '2024-08-02', amount: 45.25, form: 'cash', concept: 'Utilities', description: 'Electricity bill' },
-    { input_id: 3, date: '2024-08-03', amount: 12.90, form: 'credit', concept: 'Internet', description: 'Monthly internet service' },
-    { input_id: 4, date: '2024-08-04', amount: 30.00, form: 'cash', concept: 'Gas', description: 'Car fuel' },
-    { input_id: 5, date: '2024-08-05', amount: 22.13, form: 'credit', concept: 'Insurance', description: 'Car insurance payment' }
+    { input_id: 1, date: '2024-08-01', amount: 144.99, form: 'credit', concept: 'Rent', description: 'Monthly rent payment' },
+    { input_id: 2, date: '2024-08-02', amount: 33.2, form: 'cash', concept: 'Utilities', description: 'Electricity bill' },
+    { input_id: 3, date: '2024-08-03', amount: 13.0, form: 'credit', concept: 'Internet', description: 'Monthly internet service' },
+    { input_id: 4, date: '2024-08-04', amount: 77.70, form: 'cash', concept: 'Gas', description: 'Car fuel' },
+    { input_id: 5, date: '2024-08-05', amount: 900.30, form: 'credit', concept: 'Insurance', description: 'Car insurance payment' }
   ];
 
   dataSource = new MatTableDataSource<OutcomeElement>(this.ELEMENT_DATA);

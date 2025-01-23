@@ -38,7 +38,9 @@
       </mat-form-field>
       <span class="decimal-point">.</span>
       <mat-form-field appearance="fill" class="decimal-field">
-        <input matInput maxlength="2" type="number" [(ngModel)]="amount.decimal" name="decimalAmount">
+        <input matInput type="number" [(ngModel)]="amount.decimal" name="decimalAmount" 
+               min="0" max="99" (input)="limitDecimalValue($event)" (change)="limitDecimalValue($event)"
+               (keydown)="limitDecimalValue($event)" step="1">
       </mat-form-field>
     </div>
 
@@ -61,7 +63,9 @@
       </mat-form-field>
       <span class="decimal-point">.</span>
       <mat-form-field appearance="fill" class="decimal-field">
-        <input matInput maxlength="2" type="number" [(ngModel)]="tip.decimal" name="decimalTipAmount">
+        <input matInput type="number" [(ngModel)]="tip.decimal" name="decimalTipAmount"
+               min="0" max="99" (input)="limitDecimalValue($event)" (change)="limitDecimalValue($event)"
+               (keydown)="limitDecimalValue($event)" step="1">
       </mat-form-field>
     </div>
 

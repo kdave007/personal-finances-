@@ -73,6 +73,36 @@ export class IncomeDialogComponent {
     event.target.value = value;
   }
   
+  limitDecimalValue(event: any) {
+    let value = event.target.value;
+    
+    // Remove any non-digit characters
+    value = value.replace(/[^0-9]/g, '');
+    
+    // Ensure only 2 digits by taking the last 2 digits if more are entered
+    if (value.length > 2) {
+      value = value.slice(-2);
+    }
+    
+    // Convert to number and ensure it's between 0 and 99
+    let numValue = parseInt(value, 10);
+    if (isNaN(numValue)) {
+      numValue = 0;
+    } else if (numValue > 99) {
+      numValue = 99;
+    }
+    
+    // Update the input value
+    event.target.value = numValue;
+    
+    // Update the corresponding model
+    if (event.target.name === 'decimalAmount') {
+      this.amount.decimal = numValue;
+    } else if (event.target.name === 'decimalTipAmount') {
+      this.tip.decimal = numValue;
+    }
+  }
+  
   // Save the changes
   save(): void {
     this.data.amount = this.combineParts(this.amount.integer, this.amount.decimal);

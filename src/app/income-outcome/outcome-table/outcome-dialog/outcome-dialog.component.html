@@ -31,11 +31,13 @@
     <div class="form-row">
       <mat-form-field appearance="fill" class="amount-field">
         <mat-label>Amount</mat-label>
-        <input matInput maxlength="9" type="number" [(ngModel)]="amount.integer" name="integerAmount" step="01">
+        <input matInput maxlength="9" type="number" [(ngModel)]="amount.integer" name="integerAmount" step="1">
       </mat-form-field>
       <span class="decimal-point">.</span>
       <mat-form-field appearance="fill" class="decimal-field">
-        <input matInput maxlength="2" type="number" [(ngModel)]="amount.decimal" name="decimalAmount">
+        <input matInput type="number" [(ngModel)]="amount.decimal" name="decimalAmount"
+               min="0" max="99" (input)="limitDecimalValue($event)" (change)="limitDecimalValue($event)"
+               (keydown)="limitDecimalValue($event)" step="1">
       </mat-form-field>
     </div>
 
