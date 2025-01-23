@@ -1,0 +1,213 @@
+/* Ensure the form fields inside the table are full width but smaller */
+.full-width-table .mat-form-field {
+    width: 100%;
+    font-size: 0.75rem;  /* Smaller font size */
+    margin: 0;
+  }
+  
+  .table-container {
+      width: fit-content;
+      display: flex;
+      align-content: center;
+      flex-wrap: wrap;
+      min-width: 100%;
+  }
+  
+  
+  .mat-mdc-paginator {  
+    align-self: center; /* Center paginator within the container */
+    min-width: 100%;
+  }
+  
+  /* Adjust padding and reduce the size of the mat-form-field */
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 0 4px;  /* Smaller padding inside the fields */
+  }
+  
+  /* Apply rounded corners to all input fields */
+  .mat-form-field-appearance-fill .mat-form-field-outline {
+    border-radius: 8px;  /* Rounded corners for input borders */
+  }
+  
+  
+  .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    
+    border-radius: 8px 8px 8px 8px;
+  }
+  
+  .mat-mdc-form-field {
+    --mat-mdc-form-field-floating-label-scale: 0.75;
+    display: inline-flex;
+    flex-direction: row;
+    min-width: 0;
+    text-align: left;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--mat-form-field-container-text-font);
+    line-height: var(--mat-form-field-container-text-line-height);
+    font-size: var(--mat-form-field-container-text-size);
+    letter-spacing: var(--mat-form-field-container-text-tracking);
+    font-weight: var(--mat-form-field-container-text-weight);
+    /* width: 100%; */
+    /* margin: 0; */
+  }
+  
+  /* Common input styles */
+  .stylish-input, .stylish-select, .stylish-date-picker {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 0.875rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fafafa;
+  }
+  
+  /* Focus state for inputs, date picker, and select */
+  .stylish-input:focus, .stylish-select:focus, .stylish-date-picker:focus {
+    border-color: #3f51b5;
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.3);
+    outline: none;
+  }
+  
+  /* Styling for the date picker input */
+  .stylish-date-picker {
+    max-width: 130px; /* Control the maximum width */
+    color: #333;
+    cursor: pointer;
+  }
+  
+  /* Styling for the select dropdown */
+  .stylish-select {
+    max-width: 150px;
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHdpZHRoPSIzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTYuNTg2IDE3LjU4NmMtLjEyNy4xMjctLjI5Ni4xOS0uNDY1LjE5cy0uMzM4LS4wNjMtLjQ2NS0uMTlsLTcuNzQ1LTcuNzQ1Yy0uMTI3LS4xMjctLjE5LS4yOTYtLjE5LS40NjVzLjA2My0uMzM4LjE5LS40NjVjLjI1My0uMjUzLjY3Ni0uMjUzLjkzIDBsNy43NDUgNy43NDVjLjI1My4yNTMuMjUzLjY3NiAwIC45M3oiLz48cGF0aCBkPSJNMTYuNTg2IDE0LjQxNGMtLjEyNy0uMTI3LS4yOTYtLjE5LS40NjUtLjE5cy0uMzM4LjA2My0uNDY1LjE5bC03Ljc0NSA3Ljc0NWMtLjEyNy4xMjctLjE5LjI5Ni0uMTkuNDY1cy4wNjMuMzM4LjE5LjQ2NWMuMjUzLjI1My42NzYuMjUzLjkzIDBsNy43NDUtNy43NDVjLjI1My0uMjUzLjI1My0uNjc2IDAtLjkzeiIvPjwvc3ZnPg==');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px; /* Space for custom arrow */
+    color: #333;
+  }
+  
+  /* Adjust arrow on focus */
+  .stylish-select:focus {
+    background-position: right 8px center;
+  }
+  
+  /* General input field styling to ensure consistency */
+  input.stylish-input, input.stylish-date-picker {
+    border-radius: 6px; /* Rounded borders */
+    padding: 6px 10px; /* Adjust padding to be more compact */
+    font-size: 0.875rem; /* Ensure consistent font size */
+  }
+  
+  /* Additional styling for buttons (e.g., edit/save buttons) */
+  .stylish-button {
+    background-color: #3f51b5;
+    color: white;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+  }
+  
+  .stylish-button:hover {
+    background-color: #303f9f;
+  }
+  
+  .stylish-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.5);
+  }
+  
+  input[type="checkbox"]:hover {
+    /* Example: change border color on hover */
+    border-color: #3f51b5;
+  }
+  
+  input[type="checkbox"] {
+    cursor: pointer;
+  }
+  
+  .mat-mdc-cell {
+    border-bottom-color: var(--mat-table-row-item-outline-color, rgba(0, 0, 0, 0.12));
+    border-bottom-width: var(--mat-table-row-item-outline-width, 1px);
+    border-bottom-style: solid;
+    letter-spacing: var(--mat-table-row-item-label-text-tracking);
+    line-height: inherit;
+   
+  }
+  
+  .mat-mdc-row .mat-mdc-cell {
+    max-width: 150px;
+    overflow: hidden; /* Hide overflowed content */
+    white-space: nowrap; /* Prevent wrapping of text */
+    text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+  }
+  
+  .decimal-input{
+    width: 30%;
+  }
+  
+  .integer-input{
+    width: 60%;
+  }
+  
+  
+  .decimal-point{
+    font-size: large;
+    font-weight: 900;
+    margin: 0% 2% 0% 2%;
+  }
+  
+  .post-edit{
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .action-icon{
+  
+  }
+  
+  .action-icon:hover{
+    color: #3f51b5;
+  }
+  
+  .settings-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .filter-input-container {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .filter-input {
+    padding: 5px;
+    margin-right: 5px;
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 0.875rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fafafa;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .filter-column-container {
+    font-weight: 500;
+  }
+  
