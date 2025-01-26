@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { IncomeDialogComponent } from './income-outcome/income-table/income-dialog/income-dialog.component';
 import { OutcomeDialogComponent } from './income-outcome/outcome-table/outcome-dialog/outcome-dialog.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { MatRadioModule } from '@angular/material/radio';
     FormsModule,
     CoreModule,
     MatSlideToggleModule,
-    ViewComponentsModule
+    ViewComponentsModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: 'dynamic' } }],
   bootstrap: [AppComponent]

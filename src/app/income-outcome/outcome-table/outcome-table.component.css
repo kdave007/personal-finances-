@@ -211,3 +211,121 @@
     font-weight: 500;
   }
   
+  .date-range-container {
+    padding: 16px 24px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .date-range-container mat-form-field {
+    width: 300px;
+  }
+
+  /* Optional: Style the calendar icon */
+  .mat-datepicker-toggle {
+    color: #303f9f;
+  }
+  
+  .table-controls {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .filter-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 2;
+  }
+
+  .filter-options {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .filter-label {
+    color: #666;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .search-box {
+    flex: 1;
+  }
+
+  .search-box mat-form-field {
+    width: 100%;
+  }
+
+  .date-range-section {
+    flex: 1;
+  }
+
+  .date-range-section mat-form-field {
+    width: 100%;
+  }
+
+  /* Radio button styling */
+  mat-radio-group {
+    display: flex;
+    gap: 12px;
+  }
+
+  mat-radio-button {
+    margin-right: 12px;
+  }
+
+  /* Form field styling */
+  ::ng-deep .mat-form-field-wrapper {
+    margin-bottom: -1.25em;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0;
+  }
+
+  /* Material form field colors */
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgba(0, 0, 0, 0.12);
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline:hover .mat-form-field-outline {
+    opacity: 0.87;
+  }
+
+  /* Icon styling */
+  mat-icon {
+    color: #666;
+  }
+
+  .mat-datepicker-toggle {
+    color: #666;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .table-controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .filter-section {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .filter-options {
+      margin-bottom: 16px;
+    }
+  }
+  

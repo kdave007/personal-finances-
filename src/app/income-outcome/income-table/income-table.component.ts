@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { IncomeDialogComponent } from './income-dialog/income-dialog.component';
+import { FormGroup, FormControl } from '@angular/forms';
+import moment from 'moment';
 
 
 
@@ -80,8 +82,25 @@ export class IncomeTableComponent implements OnInit, AfterViewInit{
    filterColumn: string = 'concept'; // Default to concept filter
    filterValue: string = '';
 
+  // TODO: For production, replace with these default values:
+  // dateRange = new FormGroup({
+  //   start: new FormControl(moment().startOf('month').toDate()),
+  //   end: new FormControl(moment().toDate())
+  // });
 
-  constructor(private zone: NgZone, public dialog: MatDialog) {}
+  // Testing configuration: empty default values
+  dateRange = new FormGroup({
+    start: new FormControl(null),
+    end: new FormControl(null)
+  });
+
+  constructor(private zone: NgZone, public dialog: MatDialog) {
+    // TODO: For production, uncomment this initialization:
+    // this.fetchDataForDateRange(
+    //   moment().startOf('month').format('YYYY-MM-DD'),
+    //   moment().format('YYYY-MM-DD')
+    // );
+  }
   
 
   ngAfterViewInit(): void {
@@ -146,5 +165,23 @@ export class IncomeTableComponent implements OnInit, AfterViewInit{
     this.dataSource.filter = filterValue;
   }
 
+  onDateRangeChange(): void {
+    if (this.dateRange.value.start && this.dateRange.value.end) {
+      const startDate = moment(this.dateRange.value.start).format('YYYY-MM-DD');
+      const endDate = moment(this.dateRange.value.end).format('YYYY-MM-DD');
+      this.fetchDataForDateRange(startDate, endDate);
+    }
+  }
+
+  fetchDataForDateRange(startDate: string, endDate: string): void {
+    // TODO: Replace this with actual API call
+    console.log(`Fetching data from ${startDate} to ${endDate}`);
+    // For now, just filter the existing data
+    const filteredData = this.ELEMENT_DATA.filter(item => {
+      const itemDate = moment(item.date);
+      return itemDate.isBetween(startDate, endDate, 'day', '[]');
+    });
+    this.dataSource.data = filteredData;
+  }
 
 }

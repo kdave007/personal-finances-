@@ -1,26 +1,43 @@
-<div class="settings-container">
-  <!-- Filter Column Selection -->
-  <div class="filter-column-container">
-    <label>Filter by:</label>
-    <mat-radio-group [(ngModel)]="filterColumn">
-      <mat-radio-button value="input_id">Input ID</mat-radio-button>
-      <mat-radio-button value="date">Date</mat-radio-button>
-      <mat-radio-button value="concept">Concept</mat-radio-button>
-    </mat-radio-group>
+
+
+
+
+<div class="table-controls">
+  <!-- Filter Controls -->
+  <div class="filter-section">
+    <div class="filter-options">
+      <span class="filter-label">Filter by:</span>
+      <mat-radio-group [(ngModel)]="filterColumn">
+        <mat-radio-button value="id">ID</mat-radio-button>
+        <mat-radio-button value="date">Date</mat-radio-button>
+        <mat-radio-button value="concept">Concept</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="search-box">
+      <mat-form-field appearance="outline">
+        <input matInput
+               placeholder="Filter items"
+               [(ngModel)]="filterValue"
+               (input)="applyFilter()">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
   </div>
 
-  <!-- Filter Input -->
-  <div class="filter-input-container">
-    <input
-      type="text"
-      placeholder="Filter items"
-      [(ngModel)]="filterValue"
-      (input)="applyFilter()"
-      class="filter-input"
-    />
-    <mat-icon>search</mat-icon>
+  <!-- Date Range Picker -->
+  <div class="date-range-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Select Date Range</mat-label>
+      <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Start date">
+        <input matEndDate formControlName="end" placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker (closed)="onDateRangeChange()"></mat-date-range-picker>
+    </mat-form-field>
   </div>
 </div>
+
 <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort class="full-width-table">
 
