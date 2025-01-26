@@ -1,9 +1,41 @@
 .container {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+/* Make tabs stretch full width */
+::ng-deep .mat-tab-header {
+  width: 100%;
+}
+
+/* Style the tab content */
+::ng-deep .mat-tab-body-content {
+  padding: 40px;
+}
+
+/* Style form containers */
+::ng-deep app-add-income,
+::ng-deep app-add-outcome {
+  width: 100%;
+}
+
+/* Style the form title */
+::ng-deep .add-record-container h2 {
+  text-align: left;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+/* Make form fields use full width */
+::ng-deep .form-row {
+  width: 100%;
+}
+
+/* Adjust spacing between fields */
+::ng-deep mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}

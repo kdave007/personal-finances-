@@ -5,6 +5,8 @@ import { AppRoutingModule, routes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AddRecordComponent } from './add-record/add-record.component';
+import { AddIncomeComponent } from './add-record/add-income/add-income.component';
+import { AddOutcomeComponent } from './add-record/add-outcome/add-outcome.component';
 import { PlaygroundComponent } from './playground/playground.component';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
@@ -37,6 +39,8 @@ import { MatRadioModule } from '@angular/material/radio';
     AppComponent,
     HomeComponent,
     AddRecordComponent,
+    AddIncomeComponent,
+    AddOutcomeComponent,
     PlaygroundComponent,
     IncomeTableComponent,
     OutcomeTableComponent,

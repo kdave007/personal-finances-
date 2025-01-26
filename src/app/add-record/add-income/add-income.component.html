@@ -1,0 +1,67 @@
+<div class="add-record-container">
+  <h2>Add Income Record</h2>
+  <form (ngSubmit)="onSubmit()" #incomeForm="ngForm">
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="date-field">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="record.date" name="date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="concept-field">
+        <mat-label>Concept</mat-label>
+        <input matInput [(ngModel)]="record.concept" name="concept" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Amount Form</mat-label>
+        <mat-select [(ngModel)]="record.amountForm" name="amountForm" required>
+          <mat-option value="credit">Credit</mat-option>
+          <mat-option value="cash">Cash</mat-option>
+          <mat-option value="debit">Debit</mat-option>
+          <mat-option value="combined">Combined</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="amount-field">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="record.amount" name="amount" required min="0">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Tip Form</mat-label>
+        <mat-select [(ngModel)]="record.tipForm" name="tipForm">
+          <mat-option value="credit">Credit</mat-option>
+          <mat-option value="cash">Cash</mat-option>
+          <mat-option value="debit">Debit</mat-option>
+          <mat-option value="combined">Combined</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="fill" class="amount-field">
+        <mat-label>Tip Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="record.tipAmount" name="tipAmount" min="0">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" class="description-field">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="record.description" name="description" rows="3"></textarea>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!incomeForm.form.valid">
+        Add Income Record
+      </button>
+    </div>
+  </form>
+</div> 

@@ -1,0 +1,37 @@
+.add-record-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.date-field {
+  flex: 1;
+}
+
+.concept-field {
+  flex: 2;
+}
+
+.amount-field {
+  flex: 1;
+}
+
+.description-field {
+  width: 100%;
+}
+
+.form-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-form-field {
+  width: 100%;
+} 
